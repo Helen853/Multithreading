@@ -11,10 +11,9 @@ final class ThirdViewController: UIViewController {
         
         let infinityThread = InfinityThread()
         infinityThread.start()
+        print(infinityThread.isExecuting)
         
         sleep(2)
-        print(infinityThread.isExecuting)
-        sleep(3)
         infinityThread.cancel()
         print(infinityThread.isFinished)
     }
@@ -26,9 +25,12 @@ class InfinityThread: Thread {
     
     override func main() {
         while counter < 30 && !isCancelled {
-            counter += 1
-            print(counter)
-            InfinityThread.sleep(forTimeInterval: 1)
+            Timer.scheduledTimer(withTimeInterval: 0, repeats: true) { _ in
+                self.counter += 1
+                print(self.counter)
+                InfinityThread.sleep(forTimeInterval: 1)
+            }
+            RunLoop.current.run(until: Date() + 5)
         }
     }
 }
