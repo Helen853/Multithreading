@@ -33,7 +33,7 @@ class TimerThread: Thread {
         
         print(Thread.current)
         
-        RunLoop.current.add(timer, forMode: .common)
+        RunLoop.current.add(timer, forMode: .default)
         RunLoop.current.run()
     
     }
