@@ -13,7 +13,7 @@ class NinthViewController: UIViewController {
         super.viewDidLoad()
     }
 
-    class Post {
+    final class Post: Sendable {
             
     }
 
@@ -22,6 +22,7 @@ class NinthViewController: UIViewController {
          case data(String)
     }
             
+    //была ошибка, потому что класс не подписан на сендабл был
     enum State2: Sendable {
          case loading
          case data(Post) // Out: Associated value 'data' of 'Sendable'-conforming enum 'State2' has non-sendable type 'ViewController.Post'
